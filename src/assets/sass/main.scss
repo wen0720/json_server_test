@@ -1,0 +1,20 @@
+$green: green;
+
+html{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: $green;
+}
+
+.bg-img{
+    background-image: url(../images/img-lesson02.png);
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+}

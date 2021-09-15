@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+        <form @submit.prevent="saveTodoItem(newTodoText, -1)">
+            <div class="container my-5">
+                <div class="h4 text-center">代辦清單</div>
+                <div class="row flex-nowrap py-3">
+                    <div class="col-auto w-100 flex-shrink-1">
+                        <input
+                            v-model="newTodoText"
+                            class="form-control"
+                            type="text">
+                    </div>
+                    <div class="col-auto">
+                        <button
+                            type="submit"
+                            class="btn btn-primary">新增</button>
+                    </div>
+                </div>
+                <div class="row flex-nowrap py-2"
+                    v-for="(item, idx) in todoList"
+                    :key="idx">
+                    <div class="col-auto w-100 flex-shrink-1">
+                        <input
+                            v-model="item.text"
+                            class="form-control"
+                            type="text">
+                    </div>
+                    <div class="col-auto">
+                        <button
+                            @click="saveTodoItem(item.text, item.id)"
+                            class="btn btn-info">
+                            修改
+                        </button>
+                        <div class="px-1 d-inline-block"></div>
+                        <button @click="deleteTodoItem(item.id)" class="btn btn-danger">刪除</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="h6 mt-3">目前有 {{ todoListLength }} 筆代辦項目</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "name": "jsonserver",
+  "version": "1.0.0",
+  "description": "jsonserver test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.prod.js",
+    "build:dev": "webpack --config webpack.config.dev.js",
+    "build:done": "webpack --config webpack.config.done.js",
+    "build:htmlplugin": "webpack --config webpack.config.htmlplugin.js",
+    "dev-server": "webpack-dev-server --open --config webpack.config.dev.js",
+    "prod-server": "webpack-dev-server --open --config webpack.config.prod.js",
+    "json-server": "nodemon --watch server/index.js server/index.js"
+  },
+  "author": "tim",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "lodash": "^4.17.11",
+    "vue": "^3.2.9"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^2.0.1",
+    "css-loader": "^2.1.1",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "extract-loader": "^3.1.0",
+    "file-loader": "^3.0.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "json-server": "^0.16.3",
+    "node-sass": "^4.14.1",
+    "nodemon": "^2.0.12",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-merge": "^4.2.1"
+  }
+}
