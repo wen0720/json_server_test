@@ -3,27 +3,37 @@
 
 const path = require('path');
 const jsonServer = require('json-server');
-const _jsonExtender = require('json-server-extension');
+const jsonExtender = require('./jsonExtender');
 
-//options:
-//fullPath:fullpath for the combined object
-//generatedPath:the path where the generated files will be found
-//staticPath:the path where the static files will be found
-const jsonExtender = new _jsonExtender({filePath: path.join(__dirname, './db_extends.json'),
-                                        generatedPath: path.join(__dirname, './generated'),
-                                        staticPath: path.join(__dirname,'static')});
+// options:
+// fullPath:fullpath for the combined object
+// generatedPath:the path where the generated files will be found
+// staticPath:the path where the static files will be found
+const extender = new jsonExtender({
+  filePath: path.join(__dirname, './db_extends.json'),
+  generatedPath: path.join(__dirname, './generated'),
+  staticPath: path.join(__dirname, 'static'),
+});
 
-//register accacpt array of generators or path to the generator scripts
-//const funcs =  Object.keys(generators).map(key => generators[key])
-jsonExtender.register(path.join(__dirname, 'generators'));
-jsonExtender.generate().then((data)=>{
+// register accept array of generators or path to the generator scripts
+// const funcs =  Object.keys(generators).map(key => generators[key])
+extender.register(path.join(__dirname, 'generators'));
+extender.generate(false).then((data) => {
   /* 產生檔案完畢，開始啟動 json-server */
-
   const server = jsonServer.create();
-  const router = jsonServer.router(path.join(__dirname, 'db.json'));
+  const router = jsonServer.router(path.join(__dirname, './db_extends.json'));
+  /*
+    jsonServer.defaults(options)
+    options: {
+      static: (path tistatic files)
+      logger: true(default) - enable logger middleware
+      bodyParser: true(default) - enable bodyParser middleware
+      noCors: false(default) - disable CORS
+      readOnly: false(default) - accept only GET Request
+    }
+  */
   const middlewares = jsonServer.defaults();
 
-  // const { db } = router;
   // 定義回傳格式
   router.render = (req, res) => {
     res.jsonp({
@@ -64,14 +74,9 @@ jsonExtender.generate().then((data)=>{
   server.listen(3001, () => {
     console.log('====== JSON SERVER START AT PORT 3001 =======');
   });
-
-  /* 產生檔案完畢，開始啟動 json-server */
-
 }).catch((error) => {
-  console.log(error.message, 'red')
-})
-
-
+  console.log(error.message, 'red');
+});
 
 // server.post('/:apiType', async (req, res, next) => {
 //   const list = db.getState()[req.params.apiType];
