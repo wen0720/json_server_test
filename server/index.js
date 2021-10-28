@@ -18,6 +18,7 @@ const extender = new jsonExtender({
 // register accept array of generators or path to the generator scripts
 // const funcs =  Object.keys(generators).map(key => generators[key])
 extender.register(path.join(__dirname, 'generators'));
+// 帶入 true，重新產生資料，false 則否
 extender.generate(false).then((data) => {
   /* 產生檔案完畢，開始啟動 json-server */
   const server = jsonServer.create();

@@ -1,0 +1,6 @@
+{
+  "student": [
+    { "id": 1, "text": "paper" },
+    { "id": 2, "text":  "paper2" }
+  ]
+}

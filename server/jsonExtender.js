@@ -1,11 +1,12 @@
 /*
+ * Copyright © maty21
  * @author: maty21
  * github: https://github.com/maty21/json-server-extension
  *
 */
-const path = require('path');
+// const path = require('path');
 
-const jsonData = path.resolve(__dirname, 'db.json');
+// const jsonData = path.resolve(__dirname, 'db.json');
 const jsonConcat = require('json-concat');
 const Finder = require('fs-finder');
 const fsExtra = require('fs-extra');
@@ -65,7 +66,7 @@ class jsonExtender {
       ...generatedFiles];
     jsonConcat({
       src: [
-        jsonData,
+        // jsonData,
         ...files,
       ],
       dest: this.filePath,
