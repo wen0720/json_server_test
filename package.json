@@ -9,7 +9,7 @@
     "build:dev": "webpack --config webpack.config.dev.js",
     "build:done": "webpack --config webpack.config.done.js",
     "build:htmlplugin": "webpack --config webpack.config.htmlplugin.js",
-    "dev-server": "webpack-dev-server --open --config webpack.config.dev.js",
+    "start": "webpack-dev-server --open --config webpack.config.dev.js",
     "prod-server": "webpack-dev-server --open --config webpack.config.prod.js",
     "json-server": "nodemon --watch server/index.js server/index.js"
   },
